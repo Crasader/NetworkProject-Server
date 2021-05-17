@@ -1,0 +1,33 @@
+GCC = g++
+CFLAGS = -std=c++11 -pthread -I/opt/homebrew/Cellar/protobuf/3.15.6/include -L/opt/homebrew/Cellar/protobuf/3.15.6/lib -lprotobuf -lpthread
+
+all: protobuild client server test_client test_server
+
+protobuild: protobuf/game.proto
+	protoc --cpp_out=. protobuf/game.proto
+
+test_client: client testClient.cpp
+	${GCC testClient.cpp client -o bin/testclient 
+
+test_server: server testServer.cpp
+	${GCC testServer.cpp server -o bin/testserver
+
+
+client: client/client.cpp protobuf/game.pb.cc
+	${GCC} client/client.cpp protobuf/game.pb.cc -o bin/client ${CFLAGS}
+
+server: server/server.cpp protobuf/game.pb.cc gameManager.o
+	${GCC} server/tcpServer.cpp protobuf/game.pb.cc gameManager.o -o bin/server ${CFLAGS}
+
+
+gameManager.o: game_logic/gameManager.hpp bullet.o player.o
+
+bullet.o: game_logic/bullet.hpp gameObject.o
+
+player.o: game_logic/player.hpp gameObject.o
+
+gameObject.o: game_logic/gameObject.hpp
+
+
+clean:
+	rm -f bin/*
