@@ -12,124 +12,105 @@ AssetImportWorker0
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-63987
+50092
 Successfully changed project path to: /Users/anhduy0911/Projects/School/NetworkProgramming/midProject/C# code/TestImportDllUnity
 /Users/anhduy0911/Projects/School/NetworkProgramming/midProject/C# code/TestImportDllUnity
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 108.44 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 162.29 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2021.1.7f1 (d91830b65d9b)
 [Subsystems] Discovering subsystems at path /Applications/Unity/Hub/Editor/2021.1.7f1/Unity.app/Contents/Resources/UnitySubsystems
 [Subsystems] Discovering subsystems at path /Users/anhduy0911/Projects/School/NetworkProgramming/midProject/C# code/TestImportDllUnity/Assets
 GfxDevice: creating device client; threaded=0; jobified=0
-2021-05-21 09:04:17.875 Unity[97764:2025651] (null) preferred device: Apple M1 (high power)
-2021-05-21 09:04:17.875 Unity[97764:2025651] Metal devices available: 1
-2021-05-21 09:04:17.875 Unity[97764:2025651] 0: Apple M1 (high power)
-2021-05-21 09:04:17.875 Unity[97764:2025651] Using device Apple M1 (high power)
+2021-05-21 13:59:22.019 Unity[4091:2189719] (null) preferred device: Apple M1 (high power)
+2021-05-21 13:59:22.019 Unity[4091:2189719] Metal devices available: 1
+2021-05-21 13:59:22.019 Unity[4091:2189719] 0: Apple M1 (high power)
+2021-05-21 13:59:22.023 Unity[4091:2189719] Using device Apple M1 (high power)
 Initializing Metal device caps: Apple M1
 Initialize mono
 Mono path[0] = '/Applications/Unity/Hub/Editor/2021.1.7f1/Unity.app/Contents/Managed'
 Mono path[1] = '/Applications/Unity/Hub/Editor/2021.1.7f1/Unity.app/Contents/MonoBleedingEdge/lib/mono/unityjit'
 Mono config path = '/Applications/Unity/Hub/Editor/2021.1.7f1/Unity.app/Contents/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56764
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56091
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: /Applications/Unity/Hub/Editor/2021.1.7f1/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll
-Registered in 0.001806 seconds.
+Registered in 0.001206 seconds.
 Native extension for OSXStandalone target not found
-Refreshing native plugins compatible for Editor in 102.85 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 94.79 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  3.531 seconds
+- Completed reload, in  2.256 seconds
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.002271 seconds.
+Registered in 0.003681 seconds.
 Begin MonoManager ReloadAssembly
 Symbol file LoadedFromMemory doesn't match image /Users/anhduy0911/Projects/School/NetworkProgramming/midProject/C# code/TestImportDllUnity/Library/PackageCache/com.unity.visualscripting@1.6.1/Editor/VisualScripting.Core/Dependencies/YamlDotNet/Unity.VisualScripting.YamlDotNet.dll
 Symbol file LoadedFromMemory doesn't match image /Users/anhduy0911/Projects/School/NetworkProgramming/midProject/C# code/TestImportDllUnity/Library/PackageCache/com.unity.visualscripting@1.6.1/Editor/VisualScripting.Core/Dependencies/DotNetZip/Unity.VisualScripting.IonicZip.dll
 Native extension for OSXStandalone target not found
-Refreshing native plugins compatible for Editor in 101.75 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 99.65 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  2.610 seconds
+- Completed reload, in  2.302 seconds
 Platform modules already initialized, skipping
 ========================================================================
 Worker process is ready to serve import requests
 Launching external process: /Applications/Unity/Hub/Editor/2021.1.7f1/Unity.app/Contents/Tools/UnityShaderCompiler
 Launched and connected shader compiler UnityShaderCompiler after 0.05 seconds
-Refreshing native plugins compatible for Editor in 0.73 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 0.53 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 3372 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 3373 Unused Serialized files (Serialized files now loaded: 0)
 System memory in use before: 202.9 MB.
-System memory in use after: 202.9 MB.
+System memory in use after: 203.0 MB.
 
-Unloading 28 unused Assets to reduce memory usage. Loaded Objects now: 3825.
-Total: 5.197833 ms (FindLiveObjects: 0.265000 ms CreateObjectMapping: 0.083042 ms MarkObjects: 4.704542 ms  DeleteObjects: 0.143833 ms)
+Unloading 29 unused Assets to reduce memory usage. Loaded Objects now: 3825.
+Total: 1.873875 ms (FindLiveObjects: 0.169959 ms CreateObjectMapping: 0.074959 ms MarkObjects: 1.505083 ms  DeleteObjects: 0.122834 ms)
 
 ========================================================================
 Received Import Request.
-  path: Assets/TestImport.cs
-  artifactKey: Guid(e65019c55a2014fe0a5a72a94d46494a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/TestImport.cs using Guid(e65019c55a2014fe0a5a72a94d46494a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a4fd1c26537b143d490e1a2f9b5a3d49') in 0.590850 seconds 
+  path: Assets/dll.dylib
+  artifactKey: Guid(4612982c4b6214ef3855d3f9348c1dec) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/dll.dylib using Guid(4612982c4b6214ef3855d3f9348c1dec) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.344521 seconds  code(4) message(Build asset version error: assets/dll.dylib in SourceAssetDB has modification time of '2021-05-17T14:11:57Z' while content on disk has modification time of '0001-01-01T00:00:00Z')
+  ERROR: Build asset version error: assets/dll.dylib in SourceAssetDB has modification time of '2021-05-17T14:11:57Z' while content on disk has modification time of '0001-01-01T00:00:00Z'
 ========================================================================
 Received Import Request.
-  Time since last request: 1709.136855 seconds.
-  path: Assets/TestImport.cs
-  artifactKey: Guid(e65019c55a2014fe0a5a72a94d46494a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/TestImport.cs using Guid(e65019c55a2014fe0a5a72a94d46494a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b01c9d7b6b0ee308e931b7f44170e8ad') in 0.023783 seconds 
+  Time since last request: 37.145360 seconds.
+  path: Assets/Scenes
+  artifactKey: Guid(67a70facb02634ce1a0f7c7040a6c813) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes using Guid(67a70facb02634ce1a0f7c7040a6c813) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ef760a9127bd1aa1ce61f119eb5be80a') in 0.001799 seconds 
 ========================================================================
 Received Import Request.
-  Time since last request: 72.262750 seconds.
+  Time since last request: 0.817043 seconds.
+  path: Assets/Scenes/SampleScene.unity
+  artifactKey: Guid(2cda990e2423bbf4892e6590ba056729) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/SampleScene.unity using Guid(2cda990e2423bbf4892e6590ba056729) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.002024 seconds  code(4) message(Build asset version error: assets/scenes/samplescene.unity in SourceAssetDB has modification time of '2020-08-24T05:38:40Z' while content on disk has modification time of '2021-05-21T06:57:08Z')
+  ERROR: Build asset version error: assets/scenes/samplescene.unity in SourceAssetDB has modification time of '2020-08-24T05:38:40Z' while content on disk has modification time of '2021-05-21T06:57:08Z'
+========================================================================
+Received Import Request.
+  Time since last request: 67.013096 seconds.
   path: Assets/TestImport.cs
   artifactKey: Guid(e65019c55a2014fe0a5a72a94d46494a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/TestImport.cs using Guid(e65019c55a2014fe0a5a72a94d46494a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f82045f168e21d4b841eda97db712c01') in 0.008873 seconds 
+Start importing Assets/TestImport.cs using Guid(e65019c55a2014fe0a5a72a94d46494a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.277667 seconds  code(4) message(Build asset version error: assets/testimport.cs in SourceAssetDB has modification time of '2021-05-21T02:35:40Z' while content on disk has modification time of '2021-05-21T06:58:02Z')
+  ERROR: Build asset version error: assets/testimport.cs in SourceAssetDB has modification time of '2021-05-21T02:35:40Z' while content on disk has modification time of '2021-05-21T06:58:02Z'
 ========================================================================
 Received Prepare
 Registering precompiled user dll's ...
-Registered in 0.001803 seconds.
+Registered in 0.004280 seconds.
 Begin MonoManager ReloadAssembly
 Symbol file LoadedFromMemory doesn't match image /Users/anhduy0911/Projects/School/NetworkProgramming/midProject/C# code/TestImportDllUnity/Library/PackageCache/com.unity.visualscripting@1.6.1/Editor/VisualScripting.Core/Dependencies/YamlDotNet/Unity.VisualScripting.YamlDotNet.dll
 Symbol file LoadedFromMemory doesn't match image /Users/anhduy0911/Projects/School/NetworkProgramming/midProject/C# code/TestImportDllUnity/Library/PackageCache/com.unity.visualscripting@1.6.1/Editor/VisualScripting.Core/Dependencies/DotNetZip/Unity.VisualScripting.IonicZip.dll
 Native extension for OSXStandalone target not found
-Refreshing native plugins compatible for Editor in 0.57 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 0.72 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  2.624 seconds
+- Completed reload, in  2.179 seconds
 Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.54 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 0.56 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 3368 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 207.3 MB.
-System memory in use after: 207.4 MB.
+System memory in use before: 211.6 MB.
+System memory in use after: 211.7 MB.
 
 Unloading 17 unused Assets to reduce memory usage. Loaded Objects now: 3829.
-Total: 1.795041 ms (FindLiveObjects: 0.196041 ms CreateObjectMapping: 0.076875 ms MarkObjects: 1.425791 ms  DeleteObjects: 0.095541 ms)
-
-========================================================================
-Received Import Request.
-  Time since last request: 106.252514 seconds.
-  path: Assets/TestImport.cs
-  artifactKey: Guid(e65019c55a2014fe0a5a72a94d46494a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/TestImport.cs using Guid(e65019c55a2014fe0a5a72a94d46494a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '62fdf80364acec7020f924857a9eefa5') in 0.018942 seconds 
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.001552 seconds.
-Begin MonoManager ReloadAssembly
-Symbol file LoadedFromMemory doesn't match image /Users/anhduy0911/Projects/School/NetworkProgramming/midProject/C# code/TestImportDllUnity/Library/PackageCache/com.unity.visualscripting@1.6.1/Editor/VisualScripting.Core/Dependencies/YamlDotNet/Unity.VisualScripting.YamlDotNet.dll
-Symbol file LoadedFromMemory doesn't match image /Users/anhduy0911/Projects/School/NetworkProgramming/midProject/C# code/TestImportDllUnity/Library/PackageCache/com.unity.visualscripting@1.6.1/Editor/VisualScripting.Core/Dependencies/DotNetZip/Unity.VisualScripting.IonicZip.dll
-Native extension for OSXStandalone target not found
-Refreshing native plugins compatible for Editor in 0.57 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  2.530 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.58 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 3368 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 207.6 MB.
-System memory in use after: 207.7 MB.
-
-Unloading 17 unused Assets to reduce memory usage. Loaded Objects now: 3833.
-Total: 1.844292 ms (FindLiveObjects: 0.180000 ms CreateObjectMapping: 0.079250 ms MarkObjects: 1.489083 ms  DeleteObjects: 0.094917 ms)
+Total: 2.357750 ms (FindLiveObjects: 0.351000 ms CreateObjectMapping: 0.078042 ms MarkObjects: 1.828833 ms  DeleteObjects: 0.098125 ms)
 

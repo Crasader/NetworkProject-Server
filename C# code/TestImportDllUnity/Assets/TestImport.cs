@@ -7,16 +7,16 @@ using System.Runtime.InteropServices;
 
 public class TestImport : MonoBehaviour
 {
-    [DllImport("/Users/anhduy0911/Projects/School/NetworkProgramming/midProject/dll.dylib", EntryPoint = "addInC")]
+    [DllImport("dll", EntryPoint = "addInC")]
     static extern float addInC(float a, float b);
 
-    [DllImport("/Users/anhduy0911/Projects/School/NetworkProgramming/midProject/dll.dylib", EntryPoint = "instance_create")]
+    [DllImport("dll", EntryPoint = "instance_create")]
     static extern IntPtr instance_create();
 
-    [DllImport("/Users/anhduy0911/Projects/School/NetworkProgramming/midProject/dll.dylib", EntryPoint = "add")]
+    [DllImport("dll", EntryPoint = "add")]
     static extern float add(IntPtr tl, float a, float b);
 
-    [DllImport("/Users/anhduy0911/Projects/School/NetworkProgramming/midProject/dll.dylib", EntryPoint = "substract")]
+    [DllImport("dll", EntryPoint = "substract")]
     static extern float substract(IntPtr tl, float a, float b);
     // Start is called before the first frame update
     void Start()
