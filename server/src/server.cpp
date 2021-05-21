@@ -10,15 +10,15 @@ Server::Server(int port_number)
     server_address.sin_port = htons(port_number);
 
     //bind to the port
-    if (bind(listen_socket, (struct sockaddr *)&server_address, sizeof(server_address)) == -1)
+    if (bind(listen_socket, (struct sockaddr *)&server_address, sizeof(server_address)) != -1)
     {
         printf("Bind successfully...\n");
-        exit(-1);
     }
     else
     {
         printf("Error binding to socket.\n");
         perror("Error: ");
+        exit(-1);
     }
     current_connection = 0;
     current_room = 0;
@@ -43,26 +43,45 @@ void Server::mainLogic()
         else
         {
             int client_id = is_waiting;
-            printf("Connecttion established for client %d!\n", current_connection);
+            printf("Connection established for client %d!\n", current_connection);
 
             if (is_waiting % 2)
             {
-                rooms.push_back(Room(client_sockets[current_connection - 1], client_sockets[current_connection]));
+                printf("Entering the room!\n");
+                rooms.emplace_back(client_sockets[current_connection - 1], client_sockets[current_connection]);
                 rooms[current_room].startRoom();
                 current_room++;
             }
             else
             {
+                printf("Send wait signal for player 1!\n");
                 Status c1_status;
                 c1_status.set_status(0); // waiting
-                uint8_t buffer[4096];
-                int sz = c1_status.ByteSizeLong();
-                c1_status.SerializeToArray(buffer, sz);
+                // uint8_t buffer[4096];
+                // int sz = c1_status.ByteSizeLong();
+                // c1_status.SerializeToArray(buffer, sz);
 
-                int byte_sent = send(client_sockets[current_connection], buffer, 0, sz);
+                // int byte_sent = send(client_sockets[current_connection], buffer, 0, sz);
+                // if (byte_sent < 0)
+                //     printf("Sending from server error!");
+
+                uint8_t buffer[4096 + 1];
+                buffer[0] = 1; // flag 1 to indicate Status is sent
+                int sz = c1_status.ByteSizeLong();
+                printf("Size of message: %d\n", sz);
+                c1_status.SerializeToArray(&buffer[1], sz);
+
+                printf("Start sending\n");
+                int byte_sent = send(client_sockets[current_connection], buffer, sz + 1, 0);
+
                 if (byte_sent < 0)
-                    printf("Sending from server error!");
+                    printf("Sending from server error!\n");
+                else
+                    printf("Sending from server success: %d bytes sent!\n", byte_sent);
             }
+
+            printf("Current Connection: %d\n", current_connection);
+
             current_connection++;
             is_waiting = ++is_waiting % 2;
         }

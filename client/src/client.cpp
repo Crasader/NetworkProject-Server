@@ -57,19 +57,17 @@ void Client::sendShoot()
 int Client::receiveData(uint8_t *buffer, int size)
 {
     bytes_received = recv(client_socket, buffer, size, MSG_DONTWAIT);
-
     if (bytes_received > 0)
     {
-        uint8_t message[4096];
-        memcpy(message, buffer + 1, sizeof(buffer) - 1);
+        printf("Receive %d bytes\n", bytes_received);
         switch (buffer[0])
         {
         case 0:
-            receivePlayerState(message);
+            receivePlayerState(buffer + 1, bytes_received - 1);
             return 0; //the gamestate message
             break;
         case 1:
-            receiveStatus(message);
+            receiveStatus(buffer + 1, bytes_received - 1);
             return 1; // the status message
             break;
         default:
@@ -80,10 +78,10 @@ int Client::receiveData(uint8_t *buffer, int size)
     return bytes_received;
 }
 
-void Client::receivePlayerState(uint8_t *buffer)
+void Client::receivePlayerState(uint8_t *buffer, int size)
 {
     GameStateMessage gs;
-    gs.ParseFromArray(buffer, sizeof(buffer));
+    gs.ParseFromArray(buffer, size);
 
     printf("The info of game state:\n heath: %d, x: %f, y: %f\n",
            gs.playerstat().health(),
@@ -91,10 +89,10 @@ void Client::receivePlayerState(uint8_t *buffer)
            gs.playerstat().y());
 }
 
-void Client::receiveStatus(uint8_t *buffer)
+void Client::receiveStatus(uint8_t *buffer, int size)
 {
     Status status;
-    status.ParseFromArray(buffer, sizeof(buffer));
+    status.ParseFromArray(buffer, size);
 
     printf("The info of status: %d\n", status.status());
 }

@@ -10,7 +10,7 @@ export G_OBJ_DIR
 CXX_DEBUG_FLAGS := $(if $(DEBUG), -g,)
 export CXX_DEBUG_FLAGS
 
-all: build_protobuf build_server build_client build_gamelogic
+all: build_protobuf build_gamelogic build_server build_client 
 	
 
 build_protobuf:
@@ -23,7 +23,7 @@ build_client:
 	$(MAKE) -C client
 
 build_gamelogic:
-	$(MAKE) -C gamelogic
+	$(MAKE) -C game_logic
 
 .PHONY: clean
 
@@ -31,6 +31,6 @@ clean:
 	$(MAKE) -C protobuf clean
 	$(MAKE) -C server clean
 	$(MAKE) -C client clean
-	$(MAKE) -C gamelogic clean
+	$(MAKE) -C game_logic clean
 
 	rm -rf $(G_OBJ_DIR)

@@ -13,7 +13,7 @@
 #include <sys/types.h>
 #include <unistd.h>
 
-#include "../protobuf/src/game.pb.h"
+#include "../../protobuf/src/game.pb.h"
 
 class Client
 {
@@ -32,6 +32,6 @@ public:
     void sendDirection(float x, float y);
     void sendShoot();
     int receiveData(uint8_t *buffer, int size);
-    void receivePlayerState(uint8_t *buffer);
-    void receiveStatus(uint8_t *buffer);
+    void receivePlayerState(uint8_t *buffer, int size);
+    void receiveStatus(uint8_t *buffer, int size);
 };

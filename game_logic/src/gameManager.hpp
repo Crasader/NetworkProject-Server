@@ -19,13 +19,17 @@ private:
     const static int threshold = h / 2;
 
 public:
+    GameManager(const GameManager &) = delete;
+    GameManager &operator=(const GameManager &) = delete;
+    GameManager(GameManager &&) = default;
+    GameManager &operator=(GameManager &&) = default;
     GameManager(/* args */);
     GameState getState();
     void add(GameObject *gobj);
     int update(float deltaTime);
     void start();
     void end();
-    void updatePlayerDir(uint8_t *buff, int player_id);
+    void updatePlayerDir(uint8_t *buff, int player_id, int size);
     int checkCollide();
     void addNewBullet(uint8_t *buff, int player_id);
     void updateBulletScreen();

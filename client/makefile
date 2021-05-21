@@ -1,8 +1,8 @@
 PROJ_NAME := client
 
 CXX := g++
-CXXFLAGS := -pthread -I/opt/homebrew/Cellar/protobuf/3.15.6/include $(CXX_STD_FLAGS) $(CXX_DEBUG_FLAGS)
-LDFLAGS := -L/opt/homebrew/Cellar/protobuf/3.15.6/lib -lprotobuf -lpthread
+CXXFLAGS := -pthread -I/opt/homebrew/Cellar/protobuf/3.15.8/include $(CXX_STD_FLAGS) $(CXX_DEBUG_FLAGS)
+LDFLAGS := -L/opt/homebrew/Cellar/protobuf/3.15.8/lib -lprotobuf -lpthread
 
 SRC_DIR := ./src
 OBJ_DIR := $(if $(G_OBJ_DIR),$(G_OBJ_DIR)/$(PROJ_NAME),./obj)

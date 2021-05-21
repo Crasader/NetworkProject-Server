@@ -29,7 +29,6 @@ private:
     socklen_t client_length[max_rooms * num_per_room];
     struct sockaddr_in client_address[max_rooms * num_per_room], server_address;
     int bytes_sent, bytes_received;
-    GameManager game_manager;
 
 public:
     Server(int port_number);

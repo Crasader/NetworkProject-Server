@@ -39,10 +39,16 @@ protected:
     Vector position;
 
 public:
+    GameObject() : position{0.0f, 0.0f} {};
+    virtual ~GameObject() = default;
     std::string tag; //determine whether or not a player
     int player_id;   //is this game object belong to player 1 or 2
     virtual void update(float deltaTime, GameState &state) = 0;
     virtual void onCollide(const GameObject *other){};
     Vector getPosition() { return position; };
-    void setPosition(Vector pos) { position = pos; };
+    void setPosition(Vector pos)
+    {
+        position.x = pos.x;
+        position.y = pos.y;
+    };
 };

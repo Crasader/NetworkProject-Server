@@ -1,9 +1,10 @@
 #include "playerObject.hpp"
 
-PlayerObject::PlayerObject(int maxHealth) : currentHealth(maxHealth), speed(7){};
+PlayerObject::PlayerObject(int maxHealth) : direction{0.0f, 0.0f}, currentHealth(maxHealth), speed(7){};
 
 PlayerObject::~PlayerObject()
 {
+    printf("Now delete player object!\n");
 }
 
 void PlayerObject::update(float deltaTime, GameState &state)
@@ -13,6 +14,7 @@ void PlayerObject::update(float deltaTime, GameState &state)
         state.hasFinish = true;
         return;
     }
+    printf("The direction of the player: %f, %f\n", direction.x, direction.y);
     position += direction * deltaTime * speed;
 }
 
@@ -32,5 +34,6 @@ int PlayerObject::getHealth()
 
 void PlayerObject::setDirection(Vector dir)
 {
-    direction = dir;
+    direction.x = dir.x;
+    direction.y = dir.y;
 }

@@ -13,13 +13,16 @@ private:
     GameManager gm;
     Client clients[2];
     pthread_t pid;
-    uint8_t *buffer;
+    std::vector<uint8_t> buffer;
     bool isRunning;
     static void *threadLoop(void *param);
     void run();
 
 public:
+    Room(const Room &) = delete; // copy to constructor -> delete
+    Room &operator=(const Room &) = delete;
+    Room(Room &&) = default;
+    Room &operator=(Room &&) = default;
     Room(int socket_c1, int socket_c2);
-    ~Room();
-    pthread_t startRoom();
+    void startRoom();
 };

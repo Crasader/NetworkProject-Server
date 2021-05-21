@@ -1,14 +1,14 @@
 #pragma once
-#include "bullet.hpp"
-#include "playerObject.hpp"
 
 #include <vector>
 
-class GameState
+class GameObject;
+
+struct GameState
 {
     bool hasFinish;
-    PlayerObject *player1;
-    PlayerObject *player2;
-    std::vector<BulletObject *> bulletList1;
-    std::vector<BulletObject *> bulletList2;
+    GameObject *player1;
+    GameObject *player2;
+    std::vector<GameObject *> bulletList1;
+    std::vector<GameObject *> bulletList2;
 };
