@@ -17,13 +17,14 @@ private:
     const static int w = 80;
     const static int h = 120;
     const static int threshold = h / 2;
+    int bullet_count = 0; // use to assign i
 
 public:
     GameManager(const GameManager &) = delete;
     GameManager &operator=(const GameManager &) = delete;
     GameManager(GameManager &&) = default;
     GameManager &operator=(GameManager &&) = default;
-    GameManager(/* args */);
+    GameManager();
     GameState getState();
     void add(GameObject *gobj);
     int update(float deltaTime);

@@ -1,17 +1,20 @@
 syntax = "proto3";
 
+package GameMessage;
+
 // server to client
 message PlayerStat {
-  float x = 1;
-  float y = 2;
-  uint32 health = 3;
+  float x = 2;
+  float y = 3;
+  uint32 health = 4;
 }
 
 message Bullet {
-  float x = 1;
-  float y = 2;
-  float vx = 3;
-  float vy = 4;
+  int32 id = 1;
+  float x = 2;
+  float y = 3;
+  float vx = 4;
+  float vy = 5;
 }
 
 message BulletSpawn

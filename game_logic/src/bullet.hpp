@@ -11,6 +11,7 @@ private:
     float speed;
 
 public:
+    int id;        // to distinguish during rendering process
     float radius;  //damage radius
     int screen_id; // 0 - player 1  screen, 1 - player2 screen
     BulletObject(int damage, Vector v);

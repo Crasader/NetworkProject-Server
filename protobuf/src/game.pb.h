@@ -54,6 +54,7 @@ struct TableStruct_game_2eproto {
 };
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_game_2eproto;
 ::PROTOBUF_NAMESPACE_ID::Metadata descriptor_table_game_2eproto_metadata_getter(int index);
+namespace GameMessage {
 class Bullet;
 struct BulletDefaultTypeInternal;
 extern BulletDefaultTypeInternal _Bullet_default_instance_;
@@ -75,20 +76,22 @@ extern PlayerStatDefaultTypeInternal _PlayerStat_default_instance_;
 class Status;
 struct StatusDefaultTypeInternal;
 extern StatusDefaultTypeInternal _Status_default_instance_;
+}  // namespace GameMessage
 PROTOBUF_NAMESPACE_OPEN
-template<> ::Bullet* Arena::CreateMaybeMessage<::Bullet>(Arena*);
-template<> ::BulletSpawn* Arena::CreateMaybeMessage<::BulletSpawn>(Arena*);
-template<> ::GameStateMessage* Arena::CreateMaybeMessage<::GameStateMessage>(Arena*);
-template<> ::IsShot* Arena::CreateMaybeMessage<::IsShot>(Arena*);
-template<> ::MovingDirection* Arena::CreateMaybeMessage<::MovingDirection>(Arena*);
-template<> ::PlayerStat* Arena::CreateMaybeMessage<::PlayerStat>(Arena*);
-template<> ::Status* Arena::CreateMaybeMessage<::Status>(Arena*);
+template<> ::GameMessage::Bullet* Arena::CreateMaybeMessage<::GameMessage::Bullet>(Arena*);
+template<> ::GameMessage::BulletSpawn* Arena::CreateMaybeMessage<::GameMessage::BulletSpawn>(Arena*);
+template<> ::GameMessage::GameStateMessage* Arena::CreateMaybeMessage<::GameMessage::GameStateMessage>(Arena*);
+template<> ::GameMessage::IsShot* Arena::CreateMaybeMessage<::GameMessage::IsShot>(Arena*);
+template<> ::GameMessage::MovingDirection* Arena::CreateMaybeMessage<::GameMessage::MovingDirection>(Arena*);
+template<> ::GameMessage::PlayerStat* Arena::CreateMaybeMessage<::GameMessage::PlayerStat>(Arena*);
+template<> ::GameMessage::Status* Arena::CreateMaybeMessage<::GameMessage::Status>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
+namespace GameMessage {
 
 // ===================================================================
 
 class PlayerStat PROTOBUF_FINAL :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:PlayerStat) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:GameMessage.PlayerStat) */ {
  public:
   inline PlayerStat() : PlayerStat(nullptr) {}
   virtual ~PlayerStat();
@@ -178,7 +181,7 @@ class PlayerStat PROTOBUF_FINAL :
   void InternalSwap(PlayerStat* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "PlayerStat";
+    return "GameMessage.PlayerStat";
   }
   protected:
   explicit PlayerStat(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -200,11 +203,11 @@ class PlayerStat PROTOBUF_FINAL :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kXFieldNumber = 1,
-    kYFieldNumber = 2,
-    kHealthFieldNumber = 3,
+    kXFieldNumber = 2,
+    kYFieldNumber = 3,
+    kHealthFieldNumber = 4,
   };
-  // float x = 1;
+  // float x = 2;
   void clear_x();
   float x() const;
   void set_x(float value);
@@ -213,7 +216,7 @@ class PlayerStat PROTOBUF_FINAL :
   void _internal_set_x(float value);
   public:
 
-  // float y = 2;
+  // float y = 3;
   void clear_y();
   float y() const;
   void set_y(float value);
@@ -222,7 +225,7 @@ class PlayerStat PROTOBUF_FINAL :
   void _internal_set_y(float value);
   public:
 
-  // uint32 health = 3;
+  // uint32 health = 4;
   void clear_health();
   ::PROTOBUF_NAMESPACE_ID::uint32 health() const;
   void set_health(::PROTOBUF_NAMESPACE_ID::uint32 value);
@@ -231,7 +234,7 @@ class PlayerStat PROTOBUF_FINAL :
   void _internal_set_health(::PROTOBUF_NAMESPACE_ID::uint32 value);
   public:
 
-  // @@protoc_insertion_point(class_scope:PlayerStat)
+  // @@protoc_insertion_point(class_scope:GameMessage.PlayerStat)
  private:
   class _Internal;
 
@@ -247,7 +250,7 @@ class PlayerStat PROTOBUF_FINAL :
 // -------------------------------------------------------------------
 
 class Bullet PROTOBUF_FINAL :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Bullet) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:GameMessage.Bullet) */ {
  public:
   inline Bullet() : Bullet(nullptr) {}
   virtual ~Bullet();
@@ -337,7 +340,7 @@ class Bullet PROTOBUF_FINAL :
   void InternalSwap(Bullet* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "Bullet";
+    return "GameMessage.Bullet";
   }
   protected:
   explicit Bullet(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -359,12 +362,22 @@ class Bullet PROTOBUF_FINAL :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kXFieldNumber = 1,
-    kYFieldNumber = 2,
-    kVxFieldNumber = 3,
-    kVyFieldNumber = 4,
+    kIdFieldNumber = 1,
+    kXFieldNumber = 2,
+    kYFieldNumber = 3,
+    kVxFieldNumber = 4,
+    kVyFieldNumber = 5,
   };
-  // float x = 1;
+  // int32 id = 1;
+  void clear_id();
+  ::PROTOBUF_NAMESPACE_ID::int32 id() const;
+  void set_id(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_id() const;
+  void _internal_set_id(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // float x = 2;
   void clear_x();
   float x() const;
   void set_x(float value);
@@ -373,7 +386,7 @@ class Bullet PROTOBUF_FINAL :
   void _internal_set_x(float value);
   public:
 
-  // float y = 2;
+  // float y = 3;
   void clear_y();
   float y() const;
   void set_y(float value);
@@ -382,7 +395,7 @@ class Bullet PROTOBUF_FINAL :
   void _internal_set_y(float value);
   public:
 
-  // float vx = 3;
+  // float vx = 4;
   void clear_vx();
   float vx() const;
   void set_vx(float value);
@@ -391,7 +404,7 @@ class Bullet PROTOBUF_FINAL :
   void _internal_set_vx(float value);
   public:
 
-  // float vy = 4;
+  // float vy = 5;
   void clear_vy();
   float vy() const;
   void set_vy(float value);
@@ -400,13 +413,14 @@ class Bullet PROTOBUF_FINAL :
   void _internal_set_vy(float value);
   public:
 
-  // @@protoc_insertion_point(class_scope:Bullet)
+  // @@protoc_insertion_point(class_scope:GameMessage.Bullet)
  private:
   class _Internal;
 
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::int32 id_;
   float x_;
   float y_;
   float vx_;
@@ -417,7 +431,7 @@ class Bullet PROTOBUF_FINAL :
 // -------------------------------------------------------------------
 
 class BulletSpawn PROTOBUF_FINAL :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:BulletSpawn) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:GameMessage.BulletSpawn) */ {
  public:
   inline BulletSpawn() : BulletSpawn(nullptr) {}
   virtual ~BulletSpawn();
@@ -507,7 +521,7 @@ class BulletSpawn PROTOBUF_FINAL :
   void InternalSwap(BulletSpawn* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "BulletSpawn";
+    return "GameMessage.BulletSpawn";
   }
   protected:
   explicit BulletSpawn(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -531,39 +545,39 @@ class BulletSpawn PROTOBUF_FINAL :
   enum : int {
     kBulletFieldNumber = 1,
   };
-  // .Bullet bullet = 1;
+  // .GameMessage.Bullet bullet = 1;
   bool has_bullet() const;
   private:
   bool _internal_has_bullet() const;
   public:
   void clear_bullet();
-  const ::Bullet& bullet() const;
-  ::Bullet* release_bullet();
-  ::Bullet* mutable_bullet();
-  void set_allocated_bullet(::Bullet* bullet);
+  const ::GameMessage::Bullet& bullet() const;
+  ::GameMessage::Bullet* release_bullet();
+  ::GameMessage::Bullet* mutable_bullet();
+  void set_allocated_bullet(::GameMessage::Bullet* bullet);
   private:
-  const ::Bullet& _internal_bullet() const;
-  ::Bullet* _internal_mutable_bullet();
+  const ::GameMessage::Bullet& _internal_bullet() const;
+  ::GameMessage::Bullet* _internal_mutable_bullet();
   public:
   void unsafe_arena_set_allocated_bullet(
-      ::Bullet* bullet);
-  ::Bullet* unsafe_arena_release_bullet();
+      ::GameMessage::Bullet* bullet);
+  ::GameMessage::Bullet* unsafe_arena_release_bullet();
 
-  // @@protoc_insertion_point(class_scope:BulletSpawn)
+  // @@protoc_insertion_point(class_scope:GameMessage.BulletSpawn)
  private:
   class _Internal;
 
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::Bullet* bullet_;
+  ::GameMessage::Bullet* bullet_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_game_2eproto;
 };
 // -------------------------------------------------------------------
 
 class MovingDirection PROTOBUF_FINAL :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:MovingDirection) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:GameMessage.MovingDirection) */ {
  public:
   inline MovingDirection() : MovingDirection(nullptr) {}
   virtual ~MovingDirection();
@@ -653,7 +667,7 @@ class MovingDirection PROTOBUF_FINAL :
   void InternalSwap(MovingDirection* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "MovingDirection";
+    return "GameMessage.MovingDirection";
   }
   protected:
   explicit MovingDirection(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -696,7 +710,7 @@ class MovingDirection PROTOBUF_FINAL :
   void _internal_set_vy(float value);
   public:
 
-  // @@protoc_insertion_point(class_scope:MovingDirection)
+  // @@protoc_insertion_point(class_scope:GameMessage.MovingDirection)
  private:
   class _Internal;
 
@@ -711,7 +725,7 @@ class MovingDirection PROTOBUF_FINAL :
 // -------------------------------------------------------------------
 
 class IsShot PROTOBUF_FINAL :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:IsShot) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:GameMessage.IsShot) */ {
  public:
   inline IsShot() : IsShot(nullptr) {}
   virtual ~IsShot();
@@ -801,7 +815,7 @@ class IsShot PROTOBUF_FINAL :
   void InternalSwap(IsShot* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "IsShot";
+    return "GameMessage.IsShot";
   }
   protected:
   explicit IsShot(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -822,7 +836,7 @@ class IsShot PROTOBUF_FINAL :
 
   // accessors -------------------------------------------------------
 
-  // @@protoc_insertion_point(class_scope:IsShot)
+  // @@protoc_insertion_point(class_scope:GameMessage.IsShot)
  private:
   class _Internal;
 
@@ -835,7 +849,7 @@ class IsShot PROTOBUF_FINAL :
 // -------------------------------------------------------------------
 
 class GameStateMessage PROTOBUF_FINAL :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:GameStateMessage) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:GameMessage.GameStateMessage) */ {
  public:
   inline GameStateMessage() : GameStateMessage(nullptr) {}
   virtual ~GameStateMessage();
@@ -925,7 +939,7 @@ class GameStateMessage PROTOBUF_FINAL :
   void InternalSwap(GameStateMessage* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "GameStateMessage";
+    return "GameMessage.GameStateMessage";
   }
   protected:
   explicit GameStateMessage(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -950,58 +964,58 @@ class GameStateMessage PROTOBUF_FINAL :
     kBulletsFieldNumber = 2,
     kPlayerStatFieldNumber = 1,
   };
-  // repeated .Bullet bullets = 2;
+  // repeated .GameMessage.Bullet bullets = 2;
   int bullets_size() const;
   private:
   int _internal_bullets_size() const;
   public:
   void clear_bullets();
-  ::Bullet* mutable_bullets(int index);
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Bullet >*
+  ::GameMessage::Bullet* mutable_bullets(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::GameMessage::Bullet >*
       mutable_bullets();
   private:
-  const ::Bullet& _internal_bullets(int index) const;
-  ::Bullet* _internal_add_bullets();
+  const ::GameMessage::Bullet& _internal_bullets(int index) const;
+  ::GameMessage::Bullet* _internal_add_bullets();
   public:
-  const ::Bullet& bullets(int index) const;
-  ::Bullet* add_bullets();
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Bullet >&
+  const ::GameMessage::Bullet& bullets(int index) const;
+  ::GameMessage::Bullet* add_bullets();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::GameMessage::Bullet >&
       bullets() const;
 
-  // .PlayerStat playerStat = 1;
+  // .GameMessage.PlayerStat playerStat = 1;
   bool has_playerstat() const;
   private:
   bool _internal_has_playerstat() const;
   public:
   void clear_playerstat();
-  const ::PlayerStat& playerstat() const;
-  ::PlayerStat* release_playerstat();
-  ::PlayerStat* mutable_playerstat();
-  void set_allocated_playerstat(::PlayerStat* playerstat);
+  const ::GameMessage::PlayerStat& playerstat() const;
+  ::GameMessage::PlayerStat* release_playerstat();
+  ::GameMessage::PlayerStat* mutable_playerstat();
+  void set_allocated_playerstat(::GameMessage::PlayerStat* playerstat);
   private:
-  const ::PlayerStat& _internal_playerstat() const;
-  ::PlayerStat* _internal_mutable_playerstat();
+  const ::GameMessage::PlayerStat& _internal_playerstat() const;
+  ::GameMessage::PlayerStat* _internal_mutable_playerstat();
   public:
   void unsafe_arena_set_allocated_playerstat(
-      ::PlayerStat* playerstat);
-  ::PlayerStat* unsafe_arena_release_playerstat();
+      ::GameMessage::PlayerStat* playerstat);
+  ::GameMessage::PlayerStat* unsafe_arena_release_playerstat();
 
-  // @@protoc_insertion_point(class_scope:GameStateMessage)
+  // @@protoc_insertion_point(class_scope:GameMessage.GameStateMessage)
  private:
   class _Internal;
 
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Bullet > bullets_;
-  ::PlayerStat* playerstat_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::GameMessage::Bullet > bullets_;
+  ::GameMessage::PlayerStat* playerstat_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_game_2eproto;
 };
 // -------------------------------------------------------------------
 
 class Status PROTOBUF_FINAL :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Status) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:GameMessage.Status) */ {
  public:
   inline Status() : Status(nullptr) {}
   virtual ~Status();
@@ -1091,7 +1105,7 @@ class Status PROTOBUF_FINAL :
   void InternalSwap(Status* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "Status";
+    return "GameMessage.Status";
   }
   protected:
   explicit Status(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -1124,7 +1138,7 @@ class Status PROTOBUF_FINAL :
   void _internal_set_status(::PROTOBUF_NAMESPACE_ID::uint32 value);
   public:
 
-  // @@protoc_insertion_point(class_scope:Status)
+  // @@protoc_insertion_point(class_scope:GameMessage.Status)
  private:
   class _Internal;
 
@@ -1146,7 +1160,7 @@ class Status PROTOBUF_FINAL :
 #endif  // __GNUC__
 // PlayerStat
 
-// float x = 1;
+// float x = 2;
 inline void PlayerStat::clear_x() {
   x_ = 0;
 }
@@ -1154,7 +1168,7 @@ inline float PlayerStat::_internal_x() const {
   return x_;
 }
 inline float PlayerStat::x() const {
-  // @@protoc_insertion_point(field_get:PlayerStat.x)
+  // @@protoc_insertion_point(field_get:GameMessage.PlayerStat.x)
   return _internal_x();
 }
 inline void PlayerStat::_internal_set_x(float value) {
@@ -1163,10 +1177,10 @@ inline void PlayerStat::_internal_set_x(float value) {
 }
 inline void PlayerStat::set_x(float value) {
   _internal_set_x(value);
-  // @@protoc_insertion_point(field_set:PlayerStat.x)
+  // @@protoc_insertion_point(field_set:GameMessage.PlayerStat.x)
 }
 
-// float y = 2;
+// float y = 3;
 inline void PlayerStat::clear_y() {
   y_ = 0;
 }
@@ -1174,7 +1188,7 @@ inline float PlayerStat::_internal_y() const {
   return y_;
 }
 inline float PlayerStat::y() const {
-  // @@protoc_insertion_point(field_get:PlayerStat.y)
+  // @@protoc_insertion_point(field_get:GameMessage.PlayerStat.y)
   return _internal_y();
 }
 inline void PlayerStat::_internal_set_y(float value) {
@@ -1183,10 +1197,10 @@ inline void PlayerStat::_internal_set_y(float value) {
 }
 inline void PlayerStat::set_y(float value) {
   _internal_set_y(value);
-  // @@protoc_insertion_point(field_set:PlayerStat.y)
+  // @@protoc_insertion_point(field_set:GameMessage.PlayerStat.y)
 }
 
-// uint32 health = 3;
+// uint32 health = 4;
 inline void PlayerStat::clear_health() {
   health_ = 0u;
 }
@@ -1194,7 +1208,7 @@ inline ::PROTOBUF_NAMESPACE_ID::uint32 PlayerStat::_internal_health() const {
   return health_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::uint32 PlayerStat::health() const {
-  // @@protoc_insertion_point(field_get:PlayerStat.health)
+  // @@protoc_insertion_point(field_get:GameMessage.PlayerStat.health)
   return _internal_health();
 }
 inline void PlayerStat::_internal_set_health(::PROTOBUF_NAMESPACE_ID::uint32 value) {
@@ -1203,14 +1217,34 @@ inline void PlayerStat::_internal_set_health(::PROTOBUF_NAMESPACE_ID::uint32 val
 }
 inline void PlayerStat::set_health(::PROTOBUF_NAMESPACE_ID::uint32 value) {
   _internal_set_health(value);
-  // @@protoc_insertion_point(field_set:PlayerStat.health)
+  // @@protoc_insertion_point(field_set:GameMessage.PlayerStat.health)
 }
 
 // -------------------------------------------------------------------
 
 // Bullet
 
-// float x = 1;
+// int32 id = 1;
+inline void Bullet::clear_id() {
+  id_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 Bullet::_internal_id() const {
+  return id_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 Bullet::id() const {
+  // @@protoc_insertion_point(field_get:GameMessage.Bullet.id)
+  return _internal_id();
+}
+inline void Bullet::_internal_set_id(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  id_ = value;
+}
+inline void Bullet::set_id(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_id(value);
+  // @@protoc_insertion_point(field_set:GameMessage.Bullet.id)
+}
+
+// float x = 2;
 inline void Bullet::clear_x() {
   x_ = 0;
 }
@@ -1218,7 +1252,7 @@ inline float Bullet::_internal_x() const {
   return x_;
 }
 inline float Bullet::x() const {
-  // @@protoc_insertion_point(field_get:Bullet.x)
+  // @@protoc_insertion_point(field_get:GameMessage.Bullet.x)
   return _internal_x();
 }
 inline void Bullet::_internal_set_x(float value) {
@@ -1227,10 +1261,10 @@ inline void Bullet::_internal_set_x(float value) {
 }
 inline void Bullet::set_x(float value) {
   _internal_set_x(value);
-  // @@protoc_insertion_point(field_set:Bullet.x)
+  // @@protoc_insertion_point(field_set:GameMessage.Bullet.x)
 }
 
-// float y = 2;
+// float y = 3;
 inline void Bullet::clear_y() {
   y_ = 0;
 }
@@ -1238,7 +1272,7 @@ inline float Bullet::_internal_y() const {
   return y_;
 }
 inline float Bullet::y() const {
-  // @@protoc_insertion_point(field_get:Bullet.y)
+  // @@protoc_insertion_point(field_get:GameMessage.Bullet.y)
   return _internal_y();
 }
 inline void Bullet::_internal_set_y(float value) {
@@ -1247,10 +1281,10 @@ inline void Bullet::_internal_set_y(float value) {
 }
 inline void Bullet::set_y(float value) {
   _internal_set_y(value);
-  // @@protoc_insertion_point(field_set:Bullet.y)
+  // @@protoc_insertion_point(field_set:GameMessage.Bullet.y)
 }
 
-// float vx = 3;
+// float vx = 4;
 inline void Bullet::clear_vx() {
   vx_ = 0;
 }
@@ -1258,7 +1292,7 @@ inline float Bullet::_internal_vx() const {
   return vx_;
 }
 inline float Bullet::vx() const {
-  // @@protoc_insertion_point(field_get:Bullet.vx)
+  // @@protoc_insertion_point(field_get:GameMessage.Bullet.vx)
   return _internal_vx();
 }
 inline void Bullet::_internal_set_vx(float value) {
@@ -1267,10 +1301,10 @@ inline void Bullet::_internal_set_vx(float value) {
 }
 inline void Bullet::set_vx(float value) {
   _internal_set_vx(value);
-  // @@protoc_insertion_point(field_set:Bullet.vx)
+  // @@protoc_insertion_point(field_set:GameMessage.Bullet.vx)
 }
 
-// float vy = 4;
+// float vy = 5;
 inline void Bullet::clear_vy() {
   vy_ = 0;
 }
@@ -1278,7 +1312,7 @@ inline float Bullet::_internal_vy() const {
   return vy_;
 }
 inline float Bullet::vy() const {
-  // @@protoc_insertion_point(field_get:Bullet.vy)
+  // @@protoc_insertion_point(field_get:GameMessage.Bullet.vy)
   return _internal_vy();
 }
 inline void Bullet::_internal_set_vy(float value) {
@@ -1287,14 +1321,14 @@ inline void Bullet::_internal_set_vy(float value) {
 }
 inline void Bullet::set_vy(float value) {
   _internal_set_vy(value);
-  // @@protoc_insertion_point(field_set:Bullet.vy)
+  // @@protoc_insertion_point(field_set:GameMessage.Bullet.vy)
 }
 
 // -------------------------------------------------------------------
 
 // BulletSpawn
 
-// .Bullet bullet = 1;
+// .GameMessage.Bullet bullet = 1;
 inline bool BulletSpawn::_internal_has_bullet() const {
   return this != internal_default_instance() && bullet_ != nullptr;
 }
@@ -1307,17 +1341,17 @@ inline void BulletSpawn::clear_bullet() {
   }
   bullet_ = nullptr;
 }
-inline const ::Bullet& BulletSpawn::_internal_bullet() const {
-  const ::Bullet* p = bullet_;
-  return p != nullptr ? *p : reinterpret_cast<const ::Bullet&>(
-      ::_Bullet_default_instance_);
+inline const ::GameMessage::Bullet& BulletSpawn::_internal_bullet() const {
+  const ::GameMessage::Bullet* p = bullet_;
+  return p != nullptr ? *p : reinterpret_cast<const ::GameMessage::Bullet&>(
+      ::GameMessage::_Bullet_default_instance_);
 }
-inline const ::Bullet& BulletSpawn::bullet() const {
-  // @@protoc_insertion_point(field_get:BulletSpawn.bullet)
+inline const ::GameMessage::Bullet& BulletSpawn::bullet() const {
+  // @@protoc_insertion_point(field_get:GameMessage.BulletSpawn.bullet)
   return _internal_bullet();
 }
 inline void BulletSpawn::unsafe_arena_set_allocated_bullet(
-    ::Bullet* bullet) {
+    ::GameMessage::Bullet* bullet) {
   if (GetArena() == nullptr) {
     delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(bullet_);
   }
@@ -1327,37 +1361,37 @@ inline void BulletSpawn::unsafe_arena_set_allocated_bullet(
   } else {
     
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:BulletSpawn.bullet)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:GameMessage.BulletSpawn.bullet)
 }
-inline ::Bullet* BulletSpawn::release_bullet() {
+inline ::GameMessage::Bullet* BulletSpawn::release_bullet() {
   
-  ::Bullet* temp = bullet_;
+  ::GameMessage::Bullet* temp = bullet_;
   bullet_ = nullptr;
   if (GetArena() != nullptr) {
     temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
   }
   return temp;
 }
-inline ::Bullet* BulletSpawn::unsafe_arena_release_bullet() {
-  // @@protoc_insertion_point(field_release:BulletSpawn.bullet)
+inline ::GameMessage::Bullet* BulletSpawn::unsafe_arena_release_bullet() {
+  // @@protoc_insertion_point(field_release:GameMessage.BulletSpawn.bullet)
   
-  ::Bullet* temp = bullet_;
+  ::GameMessage::Bullet* temp = bullet_;
   bullet_ = nullptr;
   return temp;
 }
-inline ::Bullet* BulletSpawn::_internal_mutable_bullet() {
+inline ::GameMessage::Bullet* BulletSpawn::_internal_mutable_bullet() {
   
   if (bullet_ == nullptr) {
-    auto* p = CreateMaybeMessage<::Bullet>(GetArena());
+    auto* p = CreateMaybeMessage<::GameMessage::Bullet>(GetArena());
     bullet_ = p;
   }
   return bullet_;
 }
-inline ::Bullet* BulletSpawn::mutable_bullet() {
-  // @@protoc_insertion_point(field_mutable:BulletSpawn.bullet)
+inline ::GameMessage::Bullet* BulletSpawn::mutable_bullet() {
+  // @@protoc_insertion_point(field_mutable:GameMessage.BulletSpawn.bullet)
   return _internal_mutable_bullet();
 }
-inline void BulletSpawn::set_allocated_bullet(::Bullet* bullet) {
+inline void BulletSpawn::set_allocated_bullet(::GameMessage::Bullet* bullet) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
   if (message_arena == nullptr) {
     delete bullet_;
@@ -1374,7 +1408,7 @@ inline void BulletSpawn::set_allocated_bullet(::Bullet* bullet) {
     
   }
   bullet_ = bullet;
-  // @@protoc_insertion_point(field_set_allocated:BulletSpawn.bullet)
+  // @@protoc_insertion_point(field_set_allocated:GameMessage.BulletSpawn.bullet)
 }
 
 // -------------------------------------------------------------------
@@ -1389,7 +1423,7 @@ inline float MovingDirection::_internal_vx() const {
   return vx_;
 }
 inline float MovingDirection::vx() const {
-  // @@protoc_insertion_point(field_get:MovingDirection.vx)
+  // @@protoc_insertion_point(field_get:GameMessage.MovingDirection.vx)
   return _internal_vx();
 }
 inline void MovingDirection::_internal_set_vx(float value) {
@@ -1398,7 +1432,7 @@ inline void MovingDirection::_internal_set_vx(float value) {
 }
 inline void MovingDirection::set_vx(float value) {
   _internal_set_vx(value);
-  // @@protoc_insertion_point(field_set:MovingDirection.vx)
+  // @@protoc_insertion_point(field_set:GameMessage.MovingDirection.vx)
 }
 
 // float vy = 2;
@@ -1409,7 +1443,7 @@ inline float MovingDirection::_internal_vy() const {
   return vy_;
 }
 inline float MovingDirection::vy() const {
-  // @@protoc_insertion_point(field_get:MovingDirection.vy)
+  // @@protoc_insertion_point(field_get:GameMessage.MovingDirection.vy)
   return _internal_vy();
 }
 inline void MovingDirection::_internal_set_vy(float value) {
@@ -1418,7 +1452,7 @@ inline void MovingDirection::_internal_set_vy(float value) {
 }
 inline void MovingDirection::set_vy(float value) {
   _internal_set_vy(value);
-  // @@protoc_insertion_point(field_set:MovingDirection.vy)
+  // @@protoc_insertion_point(field_set:GameMessage.MovingDirection.vy)
 }
 
 // -------------------------------------------------------------------
@@ -1429,7 +1463,7 @@ inline void MovingDirection::set_vy(float value) {
 
 // GameStateMessage
 
-// .PlayerStat playerStat = 1;
+// .GameMessage.PlayerStat playerStat = 1;
 inline bool GameStateMessage::_internal_has_playerstat() const {
   return this != internal_default_instance() && playerstat_ != nullptr;
 }
@@ -1442,17 +1476,17 @@ inline void GameStateMessage::clear_playerstat() {
   }
   playerstat_ = nullptr;
 }
-inline const ::PlayerStat& GameStateMessage::_internal_playerstat() const {
-  const ::PlayerStat* p = playerstat_;
-  return p != nullptr ? *p : reinterpret_cast<const ::PlayerStat&>(
-      ::_PlayerStat_default_instance_);
+inline const ::GameMessage::PlayerStat& GameStateMessage::_internal_playerstat() const {
+  const ::GameMessage::PlayerStat* p = playerstat_;
+  return p != nullptr ? *p : reinterpret_cast<const ::GameMessage::PlayerStat&>(
+      ::GameMessage::_PlayerStat_default_instance_);
 }
-inline const ::PlayerStat& GameStateMessage::playerstat() const {
-  // @@protoc_insertion_point(field_get:GameStateMessage.playerStat)
+inline const ::GameMessage::PlayerStat& GameStateMessage::playerstat() const {
+  // @@protoc_insertion_point(field_get:GameMessage.GameStateMessage.playerStat)
   return _internal_playerstat();
 }
 inline void GameStateMessage::unsafe_arena_set_allocated_playerstat(
-    ::PlayerStat* playerstat) {
+    ::GameMessage::PlayerStat* playerstat) {
   if (GetArena() == nullptr) {
     delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(playerstat_);
   }
@@ -1462,37 +1496,37 @@ inline void GameStateMessage::unsafe_arena_set_allocated_playerstat(
   } else {
     
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:GameStateMessage.playerStat)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:GameMessage.GameStateMessage.playerStat)
 }
-inline ::PlayerStat* GameStateMessage::release_playerstat() {
+inline ::GameMessage::PlayerStat* GameStateMessage::release_playerstat() {
   
-  ::PlayerStat* temp = playerstat_;
+  ::GameMessage::PlayerStat* temp = playerstat_;
   playerstat_ = nullptr;
   if (GetArena() != nullptr) {
     temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
   }
   return temp;
 }
-inline ::PlayerStat* GameStateMessage::unsafe_arena_release_playerstat() {
-  // @@protoc_insertion_point(field_release:GameStateMessage.playerStat)
+inline ::GameMessage::PlayerStat* GameStateMessage::unsafe_arena_release_playerstat() {
+  // @@protoc_insertion_point(field_release:GameMessage.GameStateMessage.playerStat)
   
-  ::PlayerStat* temp = playerstat_;
+  ::GameMessage::PlayerStat* temp = playerstat_;
   playerstat_ = nullptr;
   return temp;
 }
-inline ::PlayerStat* GameStateMessage::_internal_mutable_playerstat() {
+inline ::GameMessage::PlayerStat* GameStateMessage::_internal_mutable_playerstat() {
   
   if (playerstat_ == nullptr) {
-    auto* p = CreateMaybeMessage<::PlayerStat>(GetArena());
+    auto* p = CreateMaybeMessage<::GameMessage::PlayerStat>(GetArena());
     playerstat_ = p;
   }
   return playerstat_;
 }
-inline ::PlayerStat* GameStateMessage::mutable_playerstat() {
-  // @@protoc_insertion_point(field_mutable:GameStateMessage.playerStat)
+inline ::GameMessage::PlayerStat* GameStateMessage::mutable_playerstat() {
+  // @@protoc_insertion_point(field_mutable:GameMessage.GameStateMessage.playerStat)
   return _internal_mutable_playerstat();
 }
-inline void GameStateMessage::set_allocated_playerstat(::PlayerStat* playerstat) {
+inline void GameStateMessage::set_allocated_playerstat(::GameMessage::PlayerStat* playerstat) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
   if (message_arena == nullptr) {
     delete playerstat_;
@@ -1509,10 +1543,10 @@ inline void GameStateMessage::set_allocated_playerstat(::PlayerStat* playerstat)
     
   }
   playerstat_ = playerstat;
-  // @@protoc_insertion_point(field_set_allocated:GameStateMessage.playerStat)
+  // @@protoc_insertion_point(field_set_allocated:GameMessage.GameStateMessage.playerStat)
 }
 
-// repeated .Bullet bullets = 2;
+// repeated .GameMessage.Bullet bullets = 2;
 inline int GameStateMessage::_internal_bullets_size() const {
   return bullets_.size();
 }
@@ -1522,32 +1556,32 @@ inline int GameStateMessage::bullets_size() const {
 inline void GameStateMessage::clear_bullets() {
   bullets_.Clear();
 }
-inline ::Bullet* GameStateMessage::mutable_bullets(int index) {
-  // @@protoc_insertion_point(field_mutable:GameStateMessage.bullets)
+inline ::GameMessage::Bullet* GameStateMessage::mutable_bullets(int index) {
+  // @@protoc_insertion_point(field_mutable:GameMessage.GameStateMessage.bullets)
   return bullets_.Mutable(index);
 }
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Bullet >*
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::GameMessage::Bullet >*
 GameStateMessage::mutable_bullets() {
-  // @@protoc_insertion_point(field_mutable_list:GameStateMessage.bullets)
+  // @@protoc_insertion_point(field_mutable_list:GameMessage.GameStateMessage.bullets)
   return &bullets_;
 }
-inline const ::Bullet& GameStateMessage::_internal_bullets(int index) const {
+inline const ::GameMessage::Bullet& GameStateMessage::_internal_bullets(int index) const {
   return bullets_.Get(index);
 }
-inline const ::Bullet& GameStateMessage::bullets(int index) const {
-  // @@protoc_insertion_point(field_get:GameStateMessage.bullets)
+inline const ::GameMessage::Bullet& GameStateMessage::bullets(int index) const {
+  // @@protoc_insertion_point(field_get:GameMessage.GameStateMessage.bullets)
   return _internal_bullets(index);
 }
-inline ::Bullet* GameStateMessage::_internal_add_bullets() {
+inline ::GameMessage::Bullet* GameStateMessage::_internal_add_bullets() {
   return bullets_.Add();
 }
-inline ::Bullet* GameStateMessage::add_bullets() {
-  // @@protoc_insertion_point(field_add:GameStateMessage.bullets)
+inline ::GameMessage::Bullet* GameStateMessage::add_bullets() {
+  // @@protoc_insertion_point(field_add:GameMessage.GameStateMessage.bullets)
   return _internal_add_bullets();
 }
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Bullet >&
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::GameMessage::Bullet >&
 GameStateMessage::bullets() const {
-  // @@protoc_insertion_point(field_list:GameStateMessage.bullets)
+  // @@protoc_insertion_point(field_list:GameMessage.GameStateMessage.bullets)
   return bullets_;
 }
 
@@ -1563,7 +1597,7 @@ inline ::PROTOBUF_NAMESPACE_ID::uint32 Status::_internal_status() const {
   return status_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::uint32 Status::status() const {
-  // @@protoc_insertion_point(field_get:Status.status)
+  // @@protoc_insertion_point(field_get:GameMessage.Status.status)
   return _internal_status();
 }
 inline void Status::_internal_set_status(::PROTOBUF_NAMESPACE_ID::uint32 value) {
@@ -1572,7 +1606,7 @@ inline void Status::_internal_set_status(::PROTOBUF_NAMESPACE_ID::uint32 value) 
 }
 inline void Status::set_status(::PROTOBUF_NAMESPACE_ID::uint32 value) {
   _internal_set_status(value);
-  // @@protoc_insertion_point(field_set:Status.status)
+  // @@protoc_insertion_point(field_set:GameMessage.Status.status)
 }
 
 #ifdef __GNUC__
@@ -1593,6 +1627,7 @@ inline void Status::set_status(::PROTOBUF_NAMESPACE_ID::uint32 value) {
 
 // @@protoc_insertion_point(namespace_scope)
 
+}  // namespace GameMessage
 
 // @@protoc_insertion_point(global_scope)
 

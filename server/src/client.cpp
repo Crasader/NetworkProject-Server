@@ -15,7 +15,7 @@ void Client::sendGameStateToClient(const GameState &gs, int client_id)
 {
     if (client_id == 0)
     {
-        uint8_t buffer1[4096 + 1];
+        uint8_t buffer1[4096 + 5];
         GameStateMessage gsm;
         buffer1[0] = 0; // set flag 0 to indicate client that this message contain gamestate
         PlayerStat *ps = gsm.mutable_playerstat();
@@ -33,17 +33,29 @@ void Client::sendGameStateToClient(const GameState &gs, int client_id)
         }
 
         int size = gsm.ByteSizeLong();
+
+        uint8_t *buf_2 = buffer1 + 1;
+        int *length = (int *)buf_2;
+        *length = size;
         printf("The size of gameState: %d\n", size);
 
-        gsm.SerializeToArray(&buffer1[1], size);
-        int byte_sent = send(socket, buffer1, size + 1, 0);
+        gsm.SerializeToArray(&buffer1[1 + sizeof(int)], size);
+        int byte_sent = send(socket, buffer1, size + 1 + sizeof(int), MSG_DONTWAIT);
         if (byte_sent < 0)
-            printf("send GameState fail!\n");
+        {
+            if (errno == EWOULDBLOCK)
+                printf("send GameState fail!\n");
+            else
+            {
+                perror("Error: ");
+                exit(0);
+            }
+        }
     }
     else
     {
         //send client
-        uint8_t buffer2[4096 + 1];
+        uint8_t buffer2[4096 + 5];
 
         GameStateMessage gsm2;
         buffer2[0] = 0;
@@ -63,33 +75,69 @@ void Client::sendGameStateToClient(const GameState &gs, int client_id)
         }
 
         int size = gsm2.ByteSizeLong();
+        uint8_t *buf_2 = buffer2 + 1;
+        int *length = (int *)buf_2;
+        *length = size;
         printf("The size of game State: %d\n", size);
 
-        gsm2.SerializeToArray(&buffer2[1], size);
-        int byte_sent = send(socket, buffer2, size + 1, 0);
+        gsm2.SerializeToArray(&buffer2[1 + sizeof(int)], size);
+        int byte_sent = send(socket, buffer2, size + 1 + sizeof(int), MSG_DONTWAIT);
         if (byte_sent < 0)
-            printf("send game state fail!\n");
+        {
+            if (errno == EWOULDBLOCK)
+                printf("send GameState fail!\n");
+            else
+            {
+                perror("Error: ");
+                exit(0);
+            }
+        }
     }
 }
 
 void Client::sendStatusToClient(Status gs)
 {
     printf("The socket: %d\n", socket);
-    uint8_t buffer[4096 + 1];
+    uint8_t buffer[4096 + 5];
     buffer[0] = 1; // flag 1 to indicate Status is sent
     int sz = gs.ByteSizeLong();
+    uint8_t *buf_2 = buffer + 1;
+    int *length = (int *)buf_2;
+    *length = sz;
     printf("The size of status: %d\n", sz);
-    gs.SerializeToArray(&buffer[1], sz);
+    gs.SerializeToArray(&buffer[1 + sizeof(int)], sz);
 
-    int byte_sent = send(socket, buffer, sz + 1, 0);
+    int byte_sent = send(socket, buffer, sz + 1 + sizeof(int), MSG_DONTWAIT);
     printf("Sent byte: %d\n", byte_sent);
     if (byte_sent < 0)
-        printf("Sending from server error!");
+    {
+        if (errno == EWOULDBLOCK)
+            printf("send Status fail!\n");
+        else
+        {
+            perror("Error: ");
+            exit(0);
+        }
+    }
 }
 
 int Client::receiveFromClient(uint8_t *buffer, size_t size)
 {
     int received_size = recv(socket, buffer, size, MSG_DONTWAIT);
-    printf("Receive from client with socket %d: %d bytes\n", socket, received_size);
+
+    if (received_size < 0)
+    {
+        if (errno == EWOULDBLOCK)
+        {
+            printf("No message");
+        }
+        else
+        {
+            perror("Error: ");
+            exit(0);
+        }
+    }
+    else
+        printf("Receive from client with socket %d: %d bytes\n", socket, received_size);
     return received_size;
 }

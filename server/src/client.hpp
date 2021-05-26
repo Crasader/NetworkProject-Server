@@ -16,6 +16,8 @@
 #include <sys/types.h>
 #include <unistd.h>
 
+using namespace GameMessage;
+
 class Client
 {
 private:

@@ -64,6 +64,7 @@
         "utility": "cpp",
         "vector": "cpp",
         "stat.h": "c",
-        "client.hpp": "c"
+        "client.hpp": "c",
+        "__tree": "c"
     }
 }

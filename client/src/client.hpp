@@ -1,6 +1,7 @@
 #pragma once
 
 #include <arpa/inet.h>
+#include <errno.h>
 #include <fcntl.h>
 #include <netinet/in.h>
 #include <pthread.h>
@@ -13,8 +14,6 @@
 #include <sys/types.h>
 #include <unistd.h>
 
-#include "../../protobuf/src/game.pb.h"
-
 class Client
 {
 private:
@@ -22,16 +21,14 @@ private:
 
     int client_socket;
     struct sockaddr_in server_address;
-    char sendline[buffer_length];
     int bytes_sent, bytes_received;
     /* data */
 public:
     Client(int port_number);
     ~Client();
     void startConnection();
-    void sendDirection(float x, float y);
-    void sendShoot();
+    void sendDirection(uint8_t *buffer, int size);
+    void sendShoot(uint8_t *buffer, int size);
     int receiveData(uint8_t *buffer, int size);
-    void receivePlayerState(uint8_t *buffer, int size);
-    void receiveStatus(uint8_t *buffer, int size);
+    int closeConnection();
 };

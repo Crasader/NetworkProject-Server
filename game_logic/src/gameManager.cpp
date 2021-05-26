@@ -1,5 +1,7 @@
 #include "gameManager.hpp"
 
+using namespace GameMessage;
+
 GameManager::GameManager(/* args */)
 {
     // PlayerObject *player1 = new PlayerObject(100);
@@ -137,6 +139,7 @@ void GameManager::addNewBullet(uint8_t *buff, int player_id)
     bo->setPosition(((PlayerObject *)gameObjList[player_id].get())->getPosition());
     bo->player_id = player_id;
     bo->screen_id = player_id;
+    bo->id = bullet_count++;
     bo->tag = "bullet";
 }
 

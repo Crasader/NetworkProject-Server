@@ -1,7 +1,7 @@
 PROJ_NAME := protobuf
 
 CXX := g++
-CXXFLAGS := -pthread -I/opt/homebrew/Cellar/protobuf/3.15.6/include $(CXX_STD_FLAGS)
+CXXFLAGS := -pthread -I/opt/homebrew/Cellar/protobuf/3.15.8/include $(CXX_STD_FLAGS)
 
 PROTOC := protoc
 

@@ -4,6 +4,11 @@ Server::Server(int port_number)
 {
     listen_socket = socket(AF_INET, SOCK_STREAM, 0);
 
+    int tr = 1;
+
+    //make the sock address reusable after destroyed
+    int flag = setsockopt(listen_socket, SOL_SOCKET, SO_REUSEADDR, &tr, sizeof(int));
+
     //preparation of the socket address
     server_address.sin_family = AF_INET;
     server_address.sin_addr.s_addr = htonl(INADDR_ANY);
@@ -57,22 +62,18 @@ void Server::mainLogic()
                 printf("Send wait signal for player 1!\n");
                 Status c1_status;
                 c1_status.set_status(0); // waiting
-                // uint8_t buffer[4096];
-                // int sz = c1_status.ByteSizeLong();
-                // c1_status.SerializeToArray(buffer, sz);
 
-                // int byte_sent = send(client_sockets[current_connection], buffer, 0, sz);
-                // if (byte_sent < 0)
-                //     printf("Sending from server error!");
-
-                uint8_t buffer[4096 + 1];
+                uint8_t buffer[4096 + 5];
                 buffer[0] = 1; // flag 1 to indicate Status is sent
                 int sz = c1_status.ByteSizeLong();
-                printf("Size of message: %d\n", sz);
-                c1_status.SerializeToArray(&buffer[1], sz);
+                uint8_t *buf_2 = buffer + 1;
+                int *length = (int *)buf_2;
+                *length = sz;
+                printf("The size of status: %d\n", sz);
+                c1_status.SerializeToArray(&buffer[1 + sizeof(int)], sz);
 
                 printf("Start sending\n");
-                int byte_sent = send(client_sockets[current_connection], buffer, sz + 1, 0);
+                int byte_sent = send(client_sockets[current_connection], buffer, sz + 1 + sizeof(int), 0);
 
                 if (byte_sent < 0)
                     printf("Sending from server error!\n");

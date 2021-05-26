@@ -27,19 +27,27 @@ void Room::run()
         uint8_t *buff = buffer.data();
         for (int i = 0; i < 2; i++)
         {
-            int flag = clients[i].receiveFromClient(buff, buffer.size());
+            int flag = clients[i].receiveFromClient(buff, 1); //read the flag first
             if (flag > 0)
             {
+                flag = clients[i].receiveFromClient(buff + 1, sizeof(int));
                 // uint8_t message[4096];
                 // memcpy(message, buff + 1, sizeof(buff) - 1); //extract the needed infos
-                switch (buffer[0])
+                if (flag > 0)
                 {
-                case 0: //the direction of client
-                    gm.updatePlayerDir(buff + 1, i, flag - 1);
-                    break;
-                case 1: //the client is shooting
-                    gm.addNewBullet(buff + 1, i);
-                    break;
+                    int *length = (int *)buff + 1;
+                    flag = clients[i].receiveFromClient(buff + 1 + sizeof(int), *length);
+
+                    if (flag > 0)
+                        switch (buffer[0])
+                        {
+                        case 0: //the direction of client
+                            gm.updatePlayerDir(buff + 1 + sizeof(int), i, *length);
+                            break;
+                        case 1: //the client is shooting
+                            gm.addNewBullet(buff + 1 + sizeof(int), i);
+                            break;
+                        }
                 }
             }
         }
@@ -76,6 +84,9 @@ void Room::run()
         {
             clients[i].sendGameStateToClient(gm.getState(), i);
         }
+
+        //sleep a short time to slow down the update process
+        sleep(1 / 1e8);
     }
 }
 
