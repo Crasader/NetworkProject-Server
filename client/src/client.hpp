@@ -17,7 +17,7 @@
 class Client
 {
 private:
-    static constexpr int buffer_length = 4096 + 2; // 2 additional byte for storing flags
+    static constexpr int buffer_length = 4096 + 5;
 
     int client_socket;
     struct sockaddr_in server_address;

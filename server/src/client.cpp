@@ -26,6 +26,8 @@ void Client::sendGameStateToClient(const GameState &gs, int client_id)
         for (int i = 0; i < gs.bulletList1.size(); i++)
         {
             Bullet *b = gsm.add_bullets();
+            b->set_playerid(((BulletObject *)gs.bulletList1[i])->player_id);
+            b->set_id(((BulletObject *)gs.bulletList1[i])->id);
             b->set_x(((BulletObject *)gs.bulletList1[i])->getPosition().x);
             b->set_y(((BulletObject *)gs.bulletList1[i])->getPosition().y);
             b->set_vx(((BulletObject *)gs.bulletList1[i])->getDirection().x);
@@ -37,7 +39,9 @@ void Client::sendGameStateToClient(const GameState &gs, int client_id)
         uint8_t *buf_2 = buffer1 + 1;
         int *length = (int *)buf_2;
         *length = size;
-        printf("The size of gameState: %d\n", size);
+        printf("The size of gameState: %d, x=%f, y=%f\n", size,
+               ((PlayerObject *)gs.player1)->getPosition().x,
+               ((PlayerObject *)gs.player1)->getPosition().y);
 
         gsm.SerializeToArray(&buffer1[1 + sizeof(int)], size);
         int byte_sent = send(socket, buffer1, size + 1 + sizeof(int), MSG_DONTWAIT);
@@ -68,6 +72,8 @@ void Client::sendGameStateToClient(const GameState &gs, int client_id)
         for (int i = 0; i < gs.bulletList2.size(); i++)
         {
             Bullet *b = gsm2.add_bullets();
+            b->set_playerid(((BulletObject *)gs.bulletList2[i])->player_id);
+            b->set_id(((BulletObject *)gs.bulletList2[i])->id);
             b->set_y(((BulletObject *)gs.bulletList2[i])->getPosition().y);
             b->set_x(((BulletObject *)gs.bulletList2[i])->getPosition().x);
             b->set_vx(((BulletObject *)gs.bulletList2[i])->getDirection().x);
@@ -78,7 +84,9 @@ void Client::sendGameStateToClient(const GameState &gs, int client_id)
         uint8_t *buf_2 = buffer2 + 1;
         int *length = (int *)buf_2;
         *length = size;
-        printf("The size of game State: %d\n", size);
+        printf("The size of gameState: %d, x=%f, y=%f\n", size,
+               ((PlayerObject *)gs.player2)->getPosition().x,
+               ((PlayerObject *)gs.player2)->getPosition().y);
 
         gsm2.SerializeToArray(&buffer2[1 + sizeof(int)], size);
         int byte_sent = send(socket, buffer2, size + 1 + sizeof(int), MSG_DONTWAIT);

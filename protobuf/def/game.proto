@@ -15,6 +15,7 @@ message Bullet {
   float y = 3;
   float vx = 4;
   float vy = 5;
+  int32 playerid = 6;
 }
 
 message BulletSpawn

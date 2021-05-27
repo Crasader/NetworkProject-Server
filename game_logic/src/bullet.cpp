@@ -1,6 +1,6 @@
 #include "bullet.hpp"
 
-BulletObject::BulletObject(int damage, Vector v) : damage(damage), direction(v), speed(10), radius(5) {}
+BulletObject::BulletObject(int damage, Vector v) : damage(damage), direction(v), speed(5), radius(5) {}
 
 BulletObject::~BulletObject()
 {

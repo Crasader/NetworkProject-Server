@@ -14,9 +14,11 @@ private:
     /* data */
     std::vector<std::unique_ptr<GameObject>> gameObjList;
     GameState state;
-    const static int w = 80;
-    const static int h = 120;
-    const static int threshold = h / 2;
+    const static int maxx = 61;
+    const static int minx = 19;
+    const static int maxh = 70;
+    const static int minh = 30;
+    const static int threshold = (maxh + minh) / 2;
     int bullet_count = 0; // use to assign i
 
 public:

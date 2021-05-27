@@ -35,7 +35,8 @@ void Room::run()
                 // memcpy(message, buff + 1, sizeof(buff) - 1); //extract the needed infos
                 if (flag > 0)
                 {
-                    int *length = (int *)buff + 1;
+                    uint8_t *l = buff + 1;
+                    int *length = (int *)l;
                     flag = clients[i].receiveFromClient(buff + 1 + sizeof(int), *length);
 
                     if (flag > 0)
@@ -86,7 +87,7 @@ void Room::run()
         }
 
         //sleep a short time to slow down the update process
-        sleep(1 / 1e8);
+        usleep(20 * 1000);
     }
 }
 

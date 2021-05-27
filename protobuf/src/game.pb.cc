@@ -37,7 +37,8 @@ constexpr Bullet::Bullet(
   , x_(0)
   , y_(0)
   , vx_(0)
-  , vy_(0){}
+  , vy_(0)
+  , playerid_(0){}
 struct BulletDefaultTypeInternal {
   constexpr BulletDefaultTypeInternal()
     : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
@@ -132,6 +133,7 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_game_2eproto::offsets[] PROTOB
   PROTOBUF_FIELD_OFFSET(::GameMessage::Bullet, y_),
   PROTOBUF_FIELD_OFFSET(::GameMessage::Bullet, vx_),
   PROTOBUF_FIELD_OFFSET(::GameMessage::Bullet, vy_),
+  PROTOBUF_FIELD_OFFSET(::GameMessage::Bullet, playerid_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::GameMessage::BulletSpawn, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -167,11 +169,11 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_game_2eproto::offsets[] PROTOB
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, sizeof(::GameMessage::PlayerStat)},
   { 8, -1, sizeof(::GameMessage::Bullet)},
-  { 18, -1, sizeof(::GameMessage::BulletSpawn)},
-  { 24, -1, sizeof(::GameMessage::MovingDirection)},
-  { 31, -1, sizeof(::GameMessage::IsShot)},
-  { 36, -1, sizeof(::GameMessage::GameStateMessage)},
-  { 43, -1, sizeof(::GameMessage::Status)},
+  { 19, -1, sizeof(::GameMessage::BulletSpawn)},
+  { 25, -1, sizeof(::GameMessage::MovingDirection)},
+  { 32, -1, sizeof(::GameMessage::IsShot)},
+  { 37, -1, sizeof(::GameMessage::GameStateMessage)},
+  { 44, -1, sizeof(::GameMessage::Status)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
@@ -186,19 +188,20 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
 
 const char descriptor_table_protodef_game_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\ngame.proto\022\013GameMessage\"2\n\nPlayerStat\022"
-  "\t\n\001x\030\002 \001(\002\022\t\n\001y\030\003 \001(\002\022\016\n\006health\030\004 \001(\r\"B\n"
+  "\t\n\001x\030\002 \001(\002\022\t\n\001y\030\003 \001(\002\022\016\n\006health\030\004 \001(\r\"T\n"
   "\006Bullet\022\n\n\002id\030\001 \001(\005\022\t\n\001x\030\002 \001(\002\022\t\n\001y\030\003 \001("
-  "\002\022\n\n\002vx\030\004 \001(\002\022\n\n\002vy\030\005 \001(\002\"2\n\013BulletSpawn"
-  "\022#\n\006bullet\030\001 \001(\0132\023.GameMessage.Bullet\")\n"
-  "\017MovingDirection\022\n\n\002vx\030\001 \001(\002\022\n\n\002vy\030\002 \001(\002"
-  "\"\010\n\006IsShot\"e\n\020GameStateMessage\022+\n\nplayer"
-  "Stat\030\001 \001(\0132\027.GameMessage.PlayerStat\022$\n\007b"
-  "ullets\030\002 \003(\0132\023.GameMessage.Bullet\"\030\n\006Sta"
-  "tus\022\016\n\006status\030\001 \001(\rb\006proto3"
+  "\002\022\n\n\002vx\030\004 \001(\002\022\n\n\002vy\030\005 \001(\002\022\020\n\010playerid\030\006 "
+  "\001(\005\"2\n\013BulletSpawn\022#\n\006bullet\030\001 \001(\0132\023.Gam"
+  "eMessage.Bullet\")\n\017MovingDirection\022\n\n\002vx"
+  "\030\001 \001(\002\022\n\n\002vy\030\002 \001(\002\"\010\n\006IsShot\"e\n\020GameStat"
+  "eMessage\022+\n\nplayerStat\030\001 \001(\0132\027.GameMessa"
+  "ge.PlayerStat\022$\n\007bullets\030\002 \003(\0132\023.GameMes"
+  "sage.Bullet\"\030\n\006Status\022\016\n\006status\030\001 \001(\rb\006p"
+  "roto3"
   ;
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_game_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_game_2eproto = {
-  false, false, 387, descriptor_table_protodef_game_2eproto, "game.proto", 
+  false, false, 405, descriptor_table_protodef_game_2eproto, "game.proto", 
   &descriptor_table_game_2eproto_once, nullptr, 0, 7,
   schemas, file_default_instances, TableStruct_game_2eproto::offsets,
   file_level_metadata_game_2eproto, file_level_enum_descriptors_game_2eproto, file_level_service_descriptors_game_2eproto,
@@ -472,16 +475,16 @@ Bullet::Bullet(const Bullet& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::memcpy(&id_, &from.id_,
-    static_cast<size_t>(reinterpret_cast<char*>(&vy_) -
-    reinterpret_cast<char*>(&id_)) + sizeof(vy_));
+    static_cast<size_t>(reinterpret_cast<char*>(&playerid_) -
+    reinterpret_cast<char*>(&id_)) + sizeof(playerid_));
   // @@protoc_insertion_point(copy_constructor:GameMessage.Bullet)
 }
 
 void Bullet::SharedCtor() {
 ::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
     reinterpret_cast<char*>(&id_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&vy_) -
-    reinterpret_cast<char*>(&id_)) + sizeof(vy_));
+    0, static_cast<size_t>(reinterpret_cast<char*>(&playerid_) -
+    reinterpret_cast<char*>(&id_)) + sizeof(playerid_));
 }
 
 Bullet::~Bullet() {
@@ -511,8 +514,8 @@ void Bullet::Clear() {
   (void) cached_has_bits;
 
   ::memset(&id_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&vy_) -
-      reinterpret_cast<char*>(&id_)) + sizeof(vy_));
+      reinterpret_cast<char*>(&playerid_) -
+      reinterpret_cast<char*>(&id_)) + sizeof(playerid_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -556,6 +559,13 @@ const char* Bullet::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::int
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 45)) {
           vy_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
+        } else goto handle_unusual;
+        continue;
+      // int32 playerid = 6;
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 48)) {
+          playerid_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
         } else goto handle_unusual;
         continue;
       default: {
@@ -616,6 +626,12 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(5, this->_internal_vy(), target);
   }
 
+  // int32 playerid = 6;
+  if (this->playerid() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(6, this->_internal_playerid(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -657,6 +673,13 @@ size_t Bullet::ByteSizeLong() const {
   // float vy = 5;
   if (!(this->vy() <= 0 && this->vy() >= 0)) {
     total_size += 1 + 4;
+  }
+
+  // int32 playerid = 6;
+  if (this->playerid() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_playerid());
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -705,6 +728,9 @@ void Bullet::MergeFrom(const Bullet& from) {
   if (!(from.vy() <= 0 && from.vy() >= 0)) {
     _internal_set_vy(from._internal_vy());
   }
+  if (from.playerid() != 0) {
+    _internal_set_playerid(from._internal_playerid());
+  }
 }
 
 void Bullet::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
@@ -729,8 +755,8 @@ void Bullet::InternalSwap(Bullet* other) {
   using std::swap;
   _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(Bullet, vy_)
-      + sizeof(Bullet::vy_)
+      PROTOBUF_FIELD_OFFSET(Bullet, playerid_)
+      + sizeof(Bullet::playerid_)
       - PROTOBUF_FIELD_OFFSET(Bullet, id_)>(
           reinterpret_cast<char*>(&id_),
           reinterpret_cast<char*>(&other->id_));

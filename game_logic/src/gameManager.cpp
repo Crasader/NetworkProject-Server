@@ -10,11 +10,11 @@ GameManager::GameManager(/* args */)
 
     gameObjList[0]->tag = "player";
     gameObjList[0]->player_id = 0;
-    gameObjList[0]->setPosition(Vector(40, threshold - 50));
+    gameObjList[0]->setPosition(Vector((maxx + minx) / 2, threshold - 10));
 
     gameObjList[1]->tag = "player";
-    gameObjList[0]->player_id = 1;
-    gameObjList[1]->setPosition(Vector(40, threshold + 50));
+    gameObjList[1]->player_id = 1;
+    gameObjList[1]->setPosition(Vector((maxx + minx) / 2, threshold + 10));
 }
 
 GameState GameManager::getState()
@@ -136,7 +136,7 @@ void GameManager::addNewBullet(uint8_t *buff, int player_id)
     //add to the manage list of game manager
     gameObjList.push_back(std::make_unique<BulletObject>(10, ((PlayerObject *)gameObjList[player_id].get())->getDirection()));
     BulletObject *bo = (BulletObject *)gameObjList[gameObjList.size() - 1].get();
-    bo->setPosition(((PlayerObject *)gameObjList[player_id].get())->getPosition());
+    bo->setPosition(((PlayerObject *)gameObjList[player_id].get())->getPosition() + Vector(0.0f, 9.5f));
     bo->player_id = player_id;
     bo->screen_id = player_id;
     bo->id = bullet_count++;
@@ -151,19 +151,27 @@ int GameManager::checkCollide()
         PlayerObject *player = (PlayerObject *)gameObjList[player_id].get();
         //check collide bw player vs border
         Vector player_pos = player->getPosition();
-        if (player_pos.x < 0)
+        if (player_pos.x < minx)
         {
-            player_pos.x = 0;
+            player_pos.x = minx;
         }
-        if (player_pos.x > w)
+        if (player_pos.x > maxx)
         {
-            player_pos.x = w;
+            player_pos.x = maxx;
         }
-        if (player_pos.y < 0)
+        if (player_pos.y < threshold && player_id == 1)
         {
-            player_pos.y = 0;
+            player_pos.y = threshold;
         }
-        if (player_pos.y > threshold)
+        else if (player_pos.y < minh && player_id == 0)
+        {
+            player_pos.y = minh;
+        }
+        if (player_pos.y > maxh && player_id == 1)
+        {
+            player_pos.y = maxh;
+        }
+        else if (player_pos.y > threshold && player_id == 0)
         {
             player_pos.y = threshold;
         }
@@ -191,7 +199,7 @@ int GameManager::checkCollide()
 
             //check collide bw bullet vs border
             Vector bullet_pos = bullet->getPosition();
-            if (bullet_pos.x < 0 || bullet_pos.x > w || bullet_pos.y < 0 || bullet_pos.y > h)
+            if (bullet_pos.x < minx || bullet_pos.x > maxx || bullet_pos.y < minh || bullet_pos.y > maxh)
             {
                 GameObject *tmp = bullet;
                 gameObjList.erase(gameObjList.begin() + i);
@@ -202,5 +210,6 @@ int GameManager::checkCollide()
     //update the state of the two player to gameState
     state.player1 = (PlayerObject *)gameObjList[0].get();
     state.player2 = (PlayerObject *)gameObjList[1].get();
+    printf("X: %f, Y: %f\n", state.player2->getPosition().x, state.player2->getPosition().y);
     return -1;
 }

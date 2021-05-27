@@ -42,7 +42,7 @@ void Client::sendDirection(uint8_t *buffer, int size)
     *length = size;
     //copy the proto-buffer to full buffer
     memcpy(full_buff + 1 + sizeof(int), buffer, size);
-    bytes_sent = send(client_socket, buffer, size + 1 + sizeof(int), MSG_DONTWAIT);
+    bytes_sent = send(client_socket, full_buff, size + 1 + sizeof(int), MSG_DONTWAIT);
     if (bytes_sent < 0)
     {
         if (errno == EWOULDBLOCK)
@@ -71,7 +71,7 @@ void Client::sendShoot(uint8_t *buffer, int size)
     *length = size;
     //copy the proto-buffer to full buffer
     memcpy(full_buff + 1 + sizeof(int), buffer, size);
-    bytes_sent = send(client_socket, buffer, size + 1 + sizeof(int), MSG_DONTWAIT);
+    bytes_sent = send(client_socket, full_buff, size + 1 + sizeof(int), MSG_DONTWAIT);
     if (bytes_sent < 0)
     {
         if (errno == EWOULDBLOCK)

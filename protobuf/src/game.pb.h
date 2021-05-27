@@ -367,6 +367,7 @@ class Bullet PROTOBUF_FINAL :
     kYFieldNumber = 3,
     kVxFieldNumber = 4,
     kVyFieldNumber = 5,
+    kPlayeridFieldNumber = 6,
   };
   // int32 id = 1;
   void clear_id();
@@ -413,6 +414,15 @@ class Bullet PROTOBUF_FINAL :
   void _internal_set_vy(float value);
   public:
 
+  // int32 playerid = 6;
+  void clear_playerid();
+  ::PROTOBUF_NAMESPACE_ID::int32 playerid() const;
+  void set_playerid(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_playerid() const;
+  void _internal_set_playerid(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
   // @@protoc_insertion_point(class_scope:GameMessage.Bullet)
  private:
   class _Internal;
@@ -425,6 +435,7 @@ class Bullet PROTOBUF_FINAL :
   float y_;
   float vx_;
   float vy_;
+  ::PROTOBUF_NAMESPACE_ID::int32 playerid_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_game_2eproto;
 };
@@ -1322,6 +1333,26 @@ inline void Bullet::_internal_set_vy(float value) {
 inline void Bullet::set_vy(float value) {
   _internal_set_vy(value);
   // @@protoc_insertion_point(field_set:GameMessage.Bullet.vy)
+}
+
+// int32 playerid = 6;
+inline void Bullet::clear_playerid() {
+  playerid_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 Bullet::_internal_playerid() const {
+  return playerid_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 Bullet::playerid() const {
+  // @@protoc_insertion_point(field_get:GameMessage.Bullet.playerid)
+  return _internal_playerid();
+}
+inline void Bullet::_internal_set_playerid(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  playerid_ = value;
+}
+inline void Bullet::set_playerid(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_playerid(value);
+  // @@protoc_insertion_point(field_set:GameMessage.Bullet.playerid)
 }
 
 // -------------------------------------------------------------------
