@@ -1,6 +1,7 @@
 #pragma once
 
 #include <fcntl.h>
+#include <limits.h>
 #include <netinet/in.h>
 #include <stdint.h>
 #include <stdio.h>

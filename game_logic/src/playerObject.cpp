@@ -26,9 +26,9 @@ void PlayerObject::update(float deltaTime, GameState &state)
         position += direction * deltaTime;
 }
 
-void PlayerObject::onCollide(const GameObject *other)
+void PlayerObject::onCollide(const GameObject *other, int damage)
 {
-    currentHealth -= 10;
+    currentHealth -= damage;
 };
 Vector PlayerObject::getDirection()
 {

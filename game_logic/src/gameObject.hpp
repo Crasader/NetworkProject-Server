@@ -49,7 +49,7 @@ public:
     std::string tag; //determine whether or not a player
     int player_id;   //is this game object belong to player 1 or 2
     virtual void update(float deltaTime, GameState &state) = 0;
-    virtual void onCollide(const GameObject *other){};
+    virtual void onCollide(const GameObject *other, int damage){};
     Vector getPosition() { return position; };
     void setPosition(Vector pos)
     {

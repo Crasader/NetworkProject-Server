@@ -17,5 +17,5 @@ public:
     int getHealth();
     void setDirection(Vector dir);
     void update(float deltaTime, GameState &state) override;
-    void onCollide(const GameObject *other) override;
+    void onCollide(const GameObject *other, int damage) override;
 };

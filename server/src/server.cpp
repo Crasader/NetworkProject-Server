@@ -36,10 +36,10 @@ Server::~Server()
 
 void Server::mainLogic()
 {
-    listen(listen_socket, max_rooms * num_per_room);
+    listen(listen_socket, INT_MAX);
     printf("Start listening...");
     //start logic
-    while (current_connection < max_rooms * num_per_room)
+    while (1)
     {
         client_length[current_connection] = sizeof(client_address[current_connection]);
 

@@ -33,6 +33,5 @@ extern "C" int closeConnection(Client *client)
 {
     int flag = client->closeConnection();
     free(client);
-
     return flag;
 }

@@ -36,8 +36,8 @@ int GameManager::update(float deltaTime)
             return false;
         }
     }
-    updateBulletScreen();
     int p_status = checkCollide();
+    updateBulletScreen();
     //TODO: calculate stop citeria
     switch (p_status)
     {
@@ -104,16 +104,69 @@ void GameManager::updateBulletScreen()
     {
         if (gameobj->tag == "player")
             continue;
-        if (((BulletObject *)gameobj.get())->getPosition().y < threshold) //screen 1
+        BulletObject *bullet = (BulletObject *)gameobj.get();
+        if (bullet->getPosition().y > maxh)
         {
-            ((BulletObject *)gameobj.get())->screen_id = 0;
-            state.bulletList1.push_back((BulletObject *)gameobj.get());
+            if (bullet->player_id == 1 && !bullet->hasChangeScreen)
+            {
+                Vector new_pos;
+                new_pos.x = minx + (maxx - bullet->getPosition().x);
+                new_pos.y = threshold;
+                bullet->setPosition(new_pos);
+                Vector new_dir;
+                new_dir.x = -bullet->getDirection().x;
+                new_dir.y = -bullet->getDirection().y;
+                bullet->setDirection(new_dir);
+                bullet->screen_id = 0;
+                bullet->hasChangeScreen = true;
+                state.bulletList1.push_back(bullet);
+                continue;
+            }
+            else
+                bullet->shouldDiscard = true;
         }
+        else if (bullet->getPosition().y > threshold)
+        {
+            if (bullet->player_id == 1)
+            {
+                state.bulletList2.push_back(bullet);
+                continue;
+            }
+            else
+            {
+                if (!bullet->hasChangeScreen)
+                {
+                    Vector new_pos;
+                    new_pos.x = minx + (maxx - bullet->getPosition().x);
+                    new_pos.y = maxh;
+                    bullet->setPosition(new_pos);
+                    Vector new_dir;
+                    new_dir.x = -bullet->getDirection().x;
+                    new_dir.y = -bullet->getDirection().y;
+                    bullet->setDirection(new_dir);
+                    bullet->screen_id = 1;
+                    bullet->hasChangeScreen = true;
+                    state.bulletList2.push_back(bullet);
+                    continue;
+                }
+            }
+        }
+
+        if (bullet->screen_id == 0)
+            state.bulletList1.push_back(bullet);
         else
-        {
-            ((BulletObject *)gameobj.get())->screen_id = 1;
-            state.bulletList2.push_back((BulletObject *)gameobj.get());
-        }
+            state.bulletList2.push_back(bullet);
+
+        // if (((BulletObject *)gameobj.get())->getPosition().y < threshold) //screen 1
+        // {
+        //     ((BulletObject *)gameobj.get())->screen_id = 0;
+        //     state.bulletList1.push_back((BulletObject *)gameobj.get());
+        // }
+        // else
+        // {
+        //     ((BulletObject *)gameobj.get())->screen_id = 1;
+        //     state.bulletList2.push_back((BulletObject *)gameobj.get());
+        // }
     }
 
     //reassign list of bullet at screen 1 and screen 2
@@ -134,9 +187,16 @@ void GameManager::addNewBullet(uint8_t *buff, int player_id)
     // bo->screen_id = bo->player_id;
 
     //add to the manage list of game manager
-    gameObjList.push_back(std::make_unique<BulletObject>(10, ((PlayerObject *)gameObjList[player_id].get())->getDirection()));
+    gameObjList.push_back(std::make_unique<BulletObject>(100));
     BulletObject *bo = (BulletObject *)gameObjList[gameObjList.size() - 1].get();
-    bo->setPosition(((PlayerObject *)gameObjList[player_id].get())->getPosition() + Vector(0.0f, 9.5f));
+    bo->setPosition(((PlayerObject *)gameObjList[player_id].get())->getPosition() + Vector(0.0f, 1.5f));
+    Vector dir = ((PlayerObject *)gameObjList[player_id].get())->getDirection();
+    bo->setDirection(Vector(dir.x / dir.magnitude(), dir.y / dir.magnitude()));
+
+    // if (player_id == 0)
+    //     bo->setDirection(Vector(dir.x / dir.magnitude(), dir.y / dir.magnitude()));
+    // else
+    //     bo->setDirection(Vector(-dir.x / dir.magnitude(), -dir.y / dir.magnitude()));
     bo->player_id = player_id;
     bo->screen_id = player_id;
     bo->id = bullet_count++;
@@ -188,7 +248,7 @@ int GameManager::checkCollide()
                 if (dis < bullet->radius) //get collide
                 {
                     printf("Collide between player and bullet\n");
-                    player->onCollide(bullet);
+                    player->onCollide(bullet, bullet->getDamage());
 
                     //dispose collided bullet
                     GameObject *tmp = bullet;
@@ -199,7 +259,7 @@ int GameManager::checkCollide()
 
             //check collide bw bullet vs border
             Vector bullet_pos = bullet->getPosition();
-            if (bullet_pos.x < minx || bullet_pos.x > maxx || bullet_pos.y < minh || bullet_pos.y > maxh)
+            if (bullet_pos.x < minx || bullet_pos.x > maxx || bullet_pos.y < minh || bullet->shouldDiscard)
             {
                 GameObject *tmp = bullet;
                 gameObjList.erase(gameObjList.begin() + i);
@@ -210,6 +270,6 @@ int GameManager::checkCollide()
     //update the state of the two player to gameState
     state.player1 = (PlayerObject *)gameObjList[0].get();
     state.player2 = (PlayerObject *)gameObjList[1].get();
-    printf("X: %f, Y: %f\n", state.player2->getPosition().x, state.player2->getPosition().y);
+    // printf("X: %f, Y: %f\n", state.player2->getPosition().x, state.player2->getPosition().y);
     return -1;
 }
